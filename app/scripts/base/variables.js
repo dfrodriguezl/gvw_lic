@@ -11,8 +11,8 @@ export const variables = {
     // urlTemas: 'https://nowsoft.app/geoportal/laboratorio/serviciosjson/visores/temas_upper.php', //enlace/servicio  que trae el servicio de las tematicas por visor
     urlVariables: 'https://geoportal.dane.gov.co/laboratorio/serviciosjson/visores/variables8.php',//enlace/servicio  que trae los datos de la variable seleccionada
     // urlVariables: 'https://nowsoft.app/geoportal/laboratorio/serviciosjson/visores/variables8_upper.php',
-    codVisor: "41", //Ponga el codigo que corresponde a SU VISOR
-    varVariable: "28401001", //Ponga el codigo de la CATEGORIA que corresponda a su visor
+    codVisor: "53", //Ponga el codigo que corresponde a SU VISOR
+    varVariable: "28406001", //Ponga el codigo de la CATEGORIA que corresponda a su visor
     series: [0, 0, 0, 0, 0],
     urlUE: "https://geoportal.dane.gov.co/laboratorio/serviciosjson/censo_economico/unidades2_segment.php?min=y&codigo_municipio=",
     urlCount: "https://geoportal.dane.gov.co/laboratorio/serviciosjson/censo_economico/unidades2_segment.php?count=y&codigo_municipio=",
