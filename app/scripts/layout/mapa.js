@@ -1061,10 +1061,10 @@ variables.changeMap = function (nivel, dpto, table) {
       for (let index = 0; index < (serie.ranges).length; index++) {
         const searchRegExp = /\./g;
         let rangeSplit = serie.ranges[(serie.ranges).length - (index + 1)].split(" - ");
-        console.log("RANGO 1", rangeSplit)
+        // console.log("RANGO 1", rangeSplit)
         let newRange = parseFloat(rangeSplit[0]).toLocaleString("de","DE") + " - " + parseFloat(rangeSplit[1]).toLocaleString("de","DE");
         let rango = newRange + " (" + dataUnidades + ")";
-        console.log("RANGO", rango)
+        // console.log("RANGO", rango)
         // let rango = serie.ranges[(serie.ranges).length - (index + 1)].replace(searchRegExp, ",") + " (" + dataUnidades + ")"
         if (index == 0) {
           rango = rango.split("-")

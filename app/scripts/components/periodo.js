@@ -43,6 +43,19 @@ const Periodo = () => {
         }
     }
 
+    variables.updateListaPeriodos = (cobertura, periodicidad) => {
+        console.log("DPTO", variables.dataArrayDatos[variables.varVariable.substring(0, 5)]["DPTO"][cobertura][periodicidad]);
+        const listaPeriodos = Object.keys(variables.dataArrayDatos[variables.varVariable.substring(0, 5)]["DPTO"][cobertura][periodicidad]).sort().reverse();
+        const periodios = listaPeriodos.map((perd) => {
+            return { value: perd, label: perd };
+        }, []);
+
+        variables.periodos = periodios;
+        variables.periodoSeleccionado = periodios[0];
+        setPeriodosList(periodios);
+        setSelectedPeriodo(variables.periodoSeleccionado);
+    }
+
 
     return (
         <div className="tools__panel">
