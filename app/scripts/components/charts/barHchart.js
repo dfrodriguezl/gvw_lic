@@ -22,7 +22,7 @@ const BarHData = () => {
       // console.log("NIVEL DATA", nivel)
 
       if (dpto == undefined) {
-        var integrado = Object.values(variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][variables.periodoSeleccionado.value]).map(function (a, b) {
+        var integrado = Object.values(variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][variables.coberturaSeleccionado.value][variables.periodicidadSeleccionado.value][variables.periodoSeleccionado.value]).map(function (a, b) {
 
           let valor = parseFloat(a[variables.alias])
           if (valor != undefined && !isNaN(valor)) {
@@ -35,7 +35,7 @@ const BarHData = () => {
         const reducer = (accumulator, curr) => accumulator + curr;
         dataFirst = parseFloat(integrado.reduce(reducer)).toLocaleString('es')
       } else if (nivel === "DPTO") {
-        const dataNivel = Object.values(variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][variables.periodoSeleccionado.value]).filter((v) => {
+        const dataNivel = Object.values(variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][variables.coberturaSeleccionado.value][variables.periodicidadSeleccionado.value][variables.periodoSeleccionado.value]).filter((v) => {
           return v.ND === dpto;
         }, [])
 
@@ -43,7 +43,7 @@ const BarHData = () => {
         dataFirst = valor.toLocaleString('de-DE');
 
       } else if (nivel === "MPIO") {
-        const dataNivel = Object.values(variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][variables.periodoSeleccionado.value]).filter((v) => {
+        const dataNivel = Object.values(variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][variables.coberturaSeleccionado.value][variables.periodicidadSeleccionado.value][variables.periodoSeleccionado.value]).filter((v) => {
           return v.MPIO === dpto;
         }, [])
         // console.log(dataNivel[0])
@@ -53,7 +53,7 @@ const BarHData = () => {
         }
 
       } else if (nivel === "SECC") {
-        const dataNivel = Object.values(variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][variables.periodoSeleccionado.value]).filter((v) => {
+        const dataNivel = Object.values(variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][variables.coberturaSeleccionado.value][variables.periodicidadSeleccionado.value][variables.periodoSeleccionado.value]).filter((v) => {
           return v.NSC === dpto;
         }, [])
         valor = parseFloat(dataNivel[0][variables.alias])

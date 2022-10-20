@@ -14,9 +14,9 @@ const Periodo = () => {
         variables.updatePeriodoResult(event);
         const currentZoom = variables.map.getView().getZoom();
         if (currentZoom <= 7) {
-            if(!variables.dataArrayDatos[variables.varVariable.substring(0, 5)]["DPTO"][variables.periodoSeleccionado.value]){
-                variables.dataArrayDatos[variables.varVariable.substring(0, 5)]["DPTO"][variables.periodoSeleccionado.value] = {};
-            }
+            // if(!variables.dataArrayDatos[variables.varVariable.substring(0, 5)]["DPTO"][variables.coberturaSeleccionado.value][variables.periodicidadSeleccionado.value][variables.periodoSeleccionado.value]){
+            //     variables.dataArrayDatos[variables.varVariable.substring(0, 5)]["DPTO"][variables.coberturaSeleccionado.value][variables.periodicidadSeleccionado.value][variables.periodoSeleccionado.value] = {};
+            // }
             variables.changeTheme("DPTO", 0, "ND", "y");
         } else if (currentZoom > 7 && currentZoom <= 11) {
             if(!variables.dataArrayDatos[variables.varVariable.substring(0, 5)]["DPTO"][variables.periodoSeleccionado.value]){
@@ -44,7 +44,6 @@ const Periodo = () => {
     }
 
     variables.updateListaPeriodos = (cobertura, periodicidad) => {
-        console.log("DPTO", variables.dataArrayDatos[variables.varVariable.substring(0, 5)]["DPTO"][cobertura][periodicidad]);
         const listaPeriodos = Object.keys(variables.dataArrayDatos[variables.varVariable.substring(0, 5)]["DPTO"][cobertura][periodicidad]).sort().reverse();
         const periodios = listaPeriodos.map((perd) => {
             return { value: perd, label: perd };

@@ -58,24 +58,6 @@ const Periodicidad = () => {
         
     }
 
-    const groupBySingleField = (data, field) => {
-        return data.reduce((acc, val) => {
-            const rest = Object.keys(val).reduce((newObj, key) => {
-                if (key !== field) {
-                    newObj[key] = val[key]
-                }
-                return newObj;
-            }, {});
-            if (acc[val[field]]) {
-                acc[val[field]].push(rest);
-            } else {
-                ;
-                acc[val[field]] = [rest];
-            }
-            return acc;
-        }, {})
-    }
-
     return (
         <div className="tools__panel">
             <p className="tools__text">Realice la selección de la periodicidad que desea ver en el mapa</p>

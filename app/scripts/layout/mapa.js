@@ -291,7 +291,7 @@ const Mapa = () => {
       return;
     }
 
-    console.log("FEATURE", feature.values_)
+    // console.log("FEATURE", feature.values_)
 
     // console.log(feature);
 
@@ -316,20 +316,20 @@ const Mapa = () => {
       const dataCategorias = variables.tematica["CATEGORIAS"][variables.varVariable][0]["CATEGORIA"];
       const tipoVariable = variables.tematica["CATEGORIAS"][variables.varVariable][0]["TIPO_VARIABLE"];
 
-      const dataPopup = variables.dataArrayDatos[variables.varVariable.substring(0, 5)][ARR[dataField][1]][variables.periodoSeleccionado.value][feature.properties_[ARR[dataField][0]]]
+      const dataPopup = variables.dataArrayDatos[variables.varVariable.substring(0, 5)][ARR[dataField][1]][variables.coberturaSeleccionado.value][variables.periodicidadSeleccionado.value][variables.periodoSeleccionado.value].filter((o) => o["CODIGO_F1"] === feature.properties_[ARR[dataField][0]]);
       unidadesAbsolutas = variables.varVariable.includes("284") ? "m<sup>2</sup>" : variables.varVariable.includes("292") ? "licencias" : "unidades";
       let HTML = "";
       HTML = '<p class="popup__list"><span class="popup__title">' + dataSubgrupo + '</span></p>';
       HTML += '<p class="popup__list"><span class="popup__subtitle">' + dataCategorias + '</span> ' + '</p>';
 
-      if (dataPopup == undefined) {
+      if (dataPopup[0] == undefined) {
         HTML += '<p class="popup__list"><span class="popup__thirdtitle">Porcentaje de unidades:</span> No data</p>';
       } else {
         if (tipoVariable === "VC") {
-          HTML += '<p class="popup__list">' + 'Participación porcentual (' + parseFloat(dataPopup[variables.alias].replace(",", ".")).toFixed(1) + ' ' + dataUnidades + ')' + '</p>'
-          HTML += '<p class="popup__list"><span class="popup__value">' + parseFloat(dataPopup[variables.alias2]).toLocaleString("de-De").replace(",", ".") + '</span><span class="popup__valueItem"> ' + unidadesAbsolutas + '</span></p>';
+          HTML += '<p class="popup__list">' + 'Participación porcentual (' + parseFloat(dataPopup[0][variables.alias].replace(",", ".")).toFixed(1) + ' ' + dataUnidades + ')' + '</p>'
+          HTML += '<p class="popup__list"><span class="popup__value">' + parseFloat(dataPopup[0][variables.alias2]).toLocaleString("de-De").replace(",", ".") + '</span><span class="popup__valueItem"> ' + unidadesAbsolutas + '</span></p>';
         } else {
-          HTML += '<p class="popup__list"><span class="popup__value">' + parseFloat(dataPopup[variables.alias]).toLocaleString("de-De").replace(",", ".")+ '</span><span class="popup__valueItem"> ' + unidadesAbsolutas + '</span></p>';
+          HTML += '<p class="popup__list"><span class="popup__value">' + parseFloat(dataPopup[0][variables.alias]).toLocaleString("de-De").replace(",", ".")+ '</span><span class="popup__valueItem"> ' + unidadesAbsolutas + '</span></p>';
         }
       }
 
@@ -452,7 +452,7 @@ const Mapa = () => {
             const dataUnidades = variables.tematica["CATEGORIAS"][variables.varVariable][0]["UNIDAD"];
             const dataCategorias = variables.tematica["CATEGORIAS"][variables.varVariable][0]["CATEGORIA"];
             const tipoVariable = variables.tematica["CATEGORIAS"][variables.varVariable][0]["TIPO_VARIABLE"];
-            const dataPopup = variables.dataArrayDatos[variables.varVariable.substring(0, 5)][featureLayer["values_"].cod_dane.length === 2 ? "DPTO" : "MPIO"][variables.periodoSeleccionado.value][featureLayer["values_"].cod_dane];
+            const dataPopup = variables.dataArrayDatos[variables.varVariable.substring(0, 5)][featureLayer["values_"].cod_dane.length === 2 ? "DPTO" : "MPIO"][variables.coberturaSeleccionado.value][variables.periodicidadSeleccionado.value][variables.periodoSeleccionado.value].filter((o) => o["CODIGO_F1"] === featureLayer["values_"].cod_dane);
             // console.log("FEATURE", feature);
 
             let unidadesAbsolutas = variables.varVariable.includes("284") ? "m<sup>2</sup>" : variables.varVariable.includes("292") ? "licencias" : "unidades";
@@ -466,10 +466,10 @@ const Mapa = () => {
               if (tipoVariable === "VC") {
                 // console.log("ALIAS", variables.alias);
                 // console.log("ALIAS 2", variables.alias2);
-                HTML += '<p class="popup__list"><span class="popup__thirdtitle">' + 'Participación porcentual (' + parseFloat(dataPopup[variables.alias].replace(",", ".")).toFixed(1) + ' ' + dataUnidades + ')' + '</span></p>'
-                HTML += '<p class="popup__list"><span class="popup__value">' + parseFloat(dataPopup[variables.alias2]).toLocaleString("de-De").replace(",", ".") + '</span><span class="popup__valueItem">' + unidadesAbsolutas + '</span></p>';
+                HTML += '<p class="popup__list"><span class="popup__thirdtitle">' + 'Participación porcentual (' + parseFloat(dataPopup[0][variables.alias].replace(",", ".")).toFixed(1) + ' ' + dataUnidades + ')' + '</span></p>'
+                HTML += '<p class="popup__list"><span class="popup__value">' + parseFloat(dataPopup[0][variables.alias2]).toLocaleString("de-De").replace(",", ".") + '</span><span class="popup__valueItem">' + unidadesAbsolutas + '</span></p>';
               } else {
-                HTML += '<p class="popup__list"><span class="popup__value">' + parseFloat(dataPopup[variables.alias]).toLocaleString("de-De").replace(",", ".") + '</span><span class="popup__valueItem"> ' + unidadesAbsolutas + '</span></p>';
+                HTML += '<p class="popup__list"><span class="popup__value">' + parseFloat(dataPopup[0][variables.alias]).toLocaleString("de-De").replace(",", ".") + '</span><span class="popup__valueItem"> ' + unidadesAbsolutas + '</span></p>';
               }
             }
 
@@ -771,10 +771,9 @@ variables.changeMap = function (nivel, dpto, table) {
 
   if (nivel == "DPTO") {
     let valor2Array = [];
-    var integrado = Object.values(variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][variables.periodoSeleccionado.value]).map(function (a, b) {
+    var integrado = Object.values(variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][variables.coberturaSeleccionado.value][variables.periodicidadSeleccionado.value][variables.periodoSeleccionado.value]).map(function (a, b) {
       let valor, valor2
-      
-      if (a["G"] === variables.periodoSeleccionado.value) {
+      // if (a["G"] === variables.periodoSeleccionado.value) {
         if (a[variables.alias].includes(",")) {
           valor = parseFloat(a[variables.alias]).toFixed(2).toLocaleString("de-De").replace(",", ".")
         } else {
@@ -805,7 +804,7 @@ variables.changeMap = function (nivel, dpto, table) {
         } else {
           return 0
         }
-      }
+      // }
 
     }, []);
 
@@ -815,12 +814,13 @@ variables.changeMap = function (nivel, dpto, table) {
     variables.max = valor2Array.length === 0 ? max : max2;
 
     let list = integrado.filter((x, i, a) => a.indexOf(x) == i)
-    // console.log(integrado)
+    // console.log("LIST", list)
 
     // LEYENDA NIVEL DPTO
     var serie = new geostats(list);
     let dataUnidades = variables.tematica["CATEGORIAS"][variables.varVariable][0]["UNIDAD"];
 
+    // console.log("SERIE", serie.getClassJenks(5));
     if (serie.getClassJenks(5) != undefined) {
       
       for (let index = 0; index < (serie.ranges).length; index++) {
@@ -867,7 +867,7 @@ variables.changeMap = function (nivel, dpto, table) {
         }
       ]
     }
-    var labels = Object.values(variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][variables.periodoSeleccionado.value]).map(function (a, b) {
+    var labels = Object.values(variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][variables.coberturaSeleccionado.value][variables.periodicidadSeleccionado.value][variables.periodoSeleccionado.value]).map(function (a, b) {
 
       let valor = parseFloat(a[variables.alias]).toFixed(2).replace(".", ",");
       let valor2 = parseFloat(a[variables.alias2]).toLocaleString("de-De").replace(",", ".")
@@ -880,7 +880,7 @@ variables.changeMap = function (nivel, dpto, table) {
         valor2 = parseFloat(a[variables.alias2])
       }
 
-      let depto = (departamentos).filter(result => (result.cod_dane == a["ND"]))
+      let depto = (departamentos).filter(result => (result.cod_dane == a["CODIGO_F1"]))
       labelsData.push(depto[0].name.length > 18 ? [depto[0].name.substring(0, 17), depto[0].name.substring(18, depto[0].name.length)] : depto[0].name)
       // console.log(valor)
       data.push(valor);
@@ -1498,78 +1498,20 @@ const updateRangeSimbology = (valorCampo, nivel, colorInput) => {
 
 function changeSymbologi(cluster, nivel, feature, layer) {
   let color = "#FFFFFF80";
-  let valorCampo = "";
+  // let valorCampo = "";
 
-  if (variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][cluster.substring(0, 2)] !== undefined && nivel === "MNZN") {
-    const valorCampo = variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][cluster.substring(0, 2)][cluster];
-    color = updateRangeSimbology(valorCampo, nivel, color);
-  } else {
+  // if (variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][cluster.substring(0, 2)] !== undefined && nivel === "MNZN") {
+  //   const valorCampo = variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][cluster.substring(0, 2)][cluster];
+  //   color = updateRangeSimbology(valorCampo, nivel, color);
+  // } else {
     // console.log("VALOR CAMPO", variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][cluster])
-    const valorCampo = variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][variables.periodoSeleccionado.value][cluster];
-    if (valorCampo !== undefined) {
-      if (valorCampo["G"] === variables.periodoSeleccionado.value) {
-        color = updateRangeSimbology(valorCampo, nivel, color);
-      }
+    const valorCampo = variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][variables.coberturaSeleccionado.value][variables.periodicidadSeleccionado.value][variables.periodoSeleccionado.value].filter((o) => o["CODIGO_F1"] === cluster);
+    if (valorCampo[0] !== undefined) {
+      // if (valorCampo["G"] === variables.periodoSeleccionado.value) {
+        color = updateRangeSimbology(valorCampo[0], nivel, color);
+      // }
     }
 
-    // console.log("CLUSTER", cluster)
-
-    // if (nivel === "DPTO") {
-    //   let prevStyle = variables.unidadesDepto.getStyle();
-    //   console.log("PREV STYLE", prevStyle);
-    //   variables.unidadesDepto.setStyle(function (feature) {
-    //     const id = feature.values_.features[0].values_.cod_dane;
-    //     console.log("ID", id);
-    //     // console.log("CLUSTER", cluster);
-    //     // console.log("COD_DANE", feature.get("cod_dane"));
-    //     let styleCircle;
-    //     if (id === cluster) {
-    //       console.log("VALOR CAMPO", 10 + 40 * (valorCampo[variables.alias] - 5));
-    //       styleCircle = new Style({
-    //         image: new CircleStyle({
-    //           radius: 50,
-    //           fill: new Fill({
-    //             color: color
-    //           }),
-    //           stroke: new Stroke({
-    //             color: "#FFFFFF",
-    //             width: 1
-    //           })
-    //         })
-    //       })
-
-    //       // return styleCircle;
-    //     } else {
-    //       styleCircle = prevStyle;
-    //     }
-
-    //     return styleCircle;
-
-    //     // else{
-    //     //   let styleCircle = new Style({
-    //     //     image: new CircleStyle({
-    //     //       radius: 50,
-    //     //       fill: new Fill({
-    //     //         color: "#000000"
-    //     //       }),
-    //     //       stroke: new Stroke({
-    //     //         color: "#FFFFFF",
-    //     //         width: 1
-    //     //       })
-    //     //     })
-    //     //   })
-
-    //     //   return styleCircle;
-    //     // }
-
-
-    //   })
-    // }
-
-    // console.log("VALOR CAMPO", valorCampo["G"])
-    // color = updateRangeSimbology(valorCampo, nivel, color);
-
-  }
 
 
 
@@ -1603,25 +1545,27 @@ function changeSymbologi(cluster, nivel, feature, layer) {
 
 function changeSymbologiCluster(cluster, nivel, min, max, max2) {
   let color = "#FFFFFF80";
-  let valorCampo = "";
+  // let valorCampo = "";
   let radioValor = 0;
 
-  if (variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][cluster.substring(0, 2)] !== undefined && nivel === "MNZN") {
-    const valorCampo = variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][cluster.substring(0, 2)][cluster];
-    color = updateRangeSimbology(valorCampo, nivel, color);
-  } else {
+
+  // if (variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][variables.coberturaSeleccionado.value][variables.periodicidadSeleccionado.value][variables.periodoSeleccionado.value][cluster.substring(0, 2)] !== undefined && nivel === "MNZN") {
+  //   const valorCampo = variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][cluster.substring(0, 2)][cluster];
+  //   color = updateRangeSimbology(valorCampo, nivel, color);
+  // } else {
     // console.log("VALOR CAMPO", variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][cluster])
-    const valorCampo = variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][variables.periodoSeleccionado.value][cluster];
-    if (valorCampo !== undefined) {
-      if (valorCampo["G"] === variables.periodoSeleccionado.value) {
-        color = updateRangeSimbology(valorCampo, nivel, color);
-        let valor = valorCampo[variables.alias2] ? valorCampo[variables.alias2] : valorCampo[variables.alias];
-        let maxValor = valorCampo[variables.alias2] ? max2 : max;
+    const valorCampo = variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][variables.coberturaSeleccionado.value][variables.periodicidadSeleccionado.value][variables.periodoSeleccionado.value].filter((o) => o["CODIGO_F1"] === cluster);
+    console.log("valor campo", valorCampo[0]);
+    if (valorCampo[0] !== undefined) {
+      // if (valorCampo["G"] === variables.periodoSeleccionado.value) {
+        color = updateRangeSimbology(valorCampo[0], nivel, color);
+        let valor = valorCampo[0][variables.alias2] ? valorCampo[0][variables.alias2] : valorCampo[0][variables.alias];
+        let maxValor = valorCampo[0][variables.alias2] ? max2 : max;
         radioValor = (valor.replace(",", ".") * 60) / maxValor;
-      }
+      // }
     }
 
-  }
+  // }
 
   if (nivel === "MPIO") {
     if (variables.deptoSelected == undefined && variables.deptoSelectedFilter != undefined) {

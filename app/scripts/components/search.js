@@ -188,6 +188,11 @@ const Search = ({ filterSearch, placeholder }) => {
                                             actualizarUltimaPeriodicidad(Object.keys(filterPeriodicidad));
                                             actualizarUltimaPeriodo(Object.keys(filterAnio).sort().reverse());
                                         }
+                                        // const filterDepto = groupBySingleField(filterAnio[keyAn], "CODIGO_F1");
+                                        // Object.keys(filterDepto).map((keyDepto, indexDepto) => {
+                                        //     variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][key][keyFP][keyAn][keyDepto] = filterDepto[indexDepto];
+                                        // })
+                                        
                                     })
                                 })
                             });
@@ -444,6 +449,7 @@ const Search = ({ filterSearch, placeholder }) => {
 
             // console.log(variables.dataArrayDatos[variables.varVariable.substring(0, 5)])
             let zoom = variables.map.getView().getZoom();
+            
 
             if (zoom >= 7) {
                 variables.changeTheme("MPIO", null, null, "y");
@@ -452,13 +458,15 @@ const Search = ({ filterSearch, placeholder }) => {
                 }
             } else if (zoom < 7) {
 
-                if (Object.keys(variables.dataArrayDatos[variables.varVariable.substring(0, 5)]["DPTO"][variables.periodoSeleccionado.value]).length === 0) {
-                    variables.changeTheme("DPTO", 0, "ND", "y");
-                    // variables.changeTheme("MPIO",0);
-                    variables.legenTheme();
+                // if (Object.keys(variables.dataArrayDatos[variables.varVariable.substring(0, 5)]["DPTO"][variables.coberturaSeleccionado.value][variables.periodicidadSeleccionado.value][variables.periodoSeleccionado.value]).length === 0) {
+                //     variables.changeTheme("DPTO", 0, "ND", "y");
+                //     // variables.changeTheme("MPIO",0);
+                //     variables.legenTheme();
 
-                    // if(variables.changeLegend != undefined ){variables.changeLegend();}                
-                }
+                //     // if(variables.changeLegend != undefined ){variables.changeLegend();}                
+                // }
+
+                variables.changeTheme("DPTO", null, null, "y");
             }
         };
 
