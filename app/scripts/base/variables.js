@@ -360,6 +360,7 @@ export const variables = {
     periodicidadSeleccionado: null,
     periodicidades: [],
     updateListaPeriodicidades: null,
-    updateListaPeriodos: null
+    updateListaPeriodos: null,
+    updatePeriodicidad: null
 }
 export const urlDeploy = 'http://localhost:3000/'

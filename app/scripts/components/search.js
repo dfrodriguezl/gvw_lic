@@ -289,6 +289,10 @@ const Search = ({ filterSearch, placeholder }) => {
         
         variables.periodicidades = periodicidadList;
         variables.periodicidadSeleccionado = periodicidadList[0];
+        if(variables.updatePeriodicidad !== null){
+            variables.updatePeriodicidad(periodicidadList[0].value);
+        }
+        
      }
 
      const actualizarUltimaPeriodo = (periodos) => {

@@ -10,6 +10,7 @@ const Periodicidad = () => {
     const handleChange = (event) => {
         setSelectedPeriodicidad(event);
         variables.periodicidadSeleccionado = event;
+        variables.updatePeriodicidad();
         // variables.updatePeriodoHeader(event);
         // variables.updatePeriodoResult(event);
         // const currentZoom = variables.map.getView().getZoom();
