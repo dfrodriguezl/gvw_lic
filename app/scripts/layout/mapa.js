@@ -1555,7 +1555,7 @@ function changeSymbologiCluster(cluster, nivel, min, max, max2) {
   // } else {
     // console.log("VALOR CAMPO", variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][cluster])
     const valorCampo = variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][variables.coberturaSeleccionado.value][variables.periodicidadSeleccionado.value][variables.periodoSeleccionado.value].filter((o) => o["CODIGO_F1"] === cluster);
-    console.log("valor campo", valorCampo[0]);
+    
     if (valorCampo[0] !== undefined) {
       // if (valorCampo["G"] === variables.periodoSeleccionado.value) {
         color = updateRangeSimbology(valorCampo[0], nivel, color);
