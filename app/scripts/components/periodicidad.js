@@ -10,6 +10,7 @@ const Periodicidad = () => {
     const handleChange = (event) => {
         setSelectedPeriodicidad(event);
         variables.periodicidadSeleccionado = event;
+        variables.updateListaPeriodos(variables.coberturaSeleccionado.value, variables.periodicidadSeleccionado.value);
         variables.updatePeriodicidad();
         // variables.updatePeriodoHeader(event);
         // variables.updatePeriodoResult(event);

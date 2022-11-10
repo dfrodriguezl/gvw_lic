@@ -51,7 +51,7 @@ const Filter = (props) => {
         variables.deptoSelectedFilter = evt.cod_dane;
         variables.deptoVariable = evt.cod_dane;
         
-        variables.filterGeo("DPTO",evt.cod_dane)     
+             
         
         
         // let currZoom = variables.map.getView().getZoom();
@@ -70,18 +70,22 @@ const Filter = (props) => {
             variables.changeDepto(evt.cod_dane + " - " + evt.name)
         }
 
-        let nivel = 'DPTO';
+        let nivel = 'MPIO';
 
-        if (variables.changePieChartData != null) {
-            variables.changePieChartData(nivel,evt.cod_dane);
-        }
-        // console.log(variables.changeDonuChartData);
-        if (variables.changeDonuChartData != null) {
-            variables.changeDonuChartData(nivel,evt.cod_dane);
-        }
-        if (variables.changeBarChartData != null) {
-            variables.changeBarChartData(nivel,evt.cod_dane);
-        }
+        variables.changeTheme(nivel, evt.cod_dane, "NM", "N");
+        // variables.filterGeo("DPTO",evt.cod_dane);
+        // variables.changeTheme("DPTO", 0, "ND", "y");
+
+        // if (variables.changePieChartData != null) {
+        //     variables.changePieChartData(nivel,evt.cod_dane);
+        // }
+        // // console.log(variables.changeDonuChartData);
+        // if (variables.changeDonuChartData != null) {
+        //     variables.changeDonuChartData(nivel,evt.cod_dane);
+        // }
+        // if (variables.changeBarChartData != null) {
+        //     variables.changeBarChartData(nivel,evt.cod_dane);
+        // }
 
         let layer = variables.capas['deptos_vt2'];
         // let layer2 = variables.capas['mpios_vt2'];

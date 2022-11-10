@@ -16,6 +16,8 @@ const BarHData = () => {
     setCategoria(variables.tematica["CATEGORIAS"][variables.varVariable][0]["CATEGORIA"])
 
     let valor = 0;
+    console.log("DPTO", dpto);
+    console.log("NIVEL", nivel);
 
     if (variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel] != undefined) {
       // console.log(variables.dataArrayDatos[variables.varVariable.substring(0, 5)])
@@ -36,15 +38,18 @@ const BarHData = () => {
         dataFirst = parseFloat(integrado.reduce(reducer)).toLocaleString('es')
       } else if (nivel === "DPTO") {
         const dataNivel = Object.values(variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][variables.coberturaSeleccionado.value][variables.periodicidadSeleccionado.value][variables.periodoSeleccionado.value]).filter((v) => {
-          return v.ND === dpto;
+          return v.CODIGO_F1 === dpto;
         }, [])
 
         valor = parseFloat(dataNivel[0][variables.alias])
         dataFirst = valor.toLocaleString('de-DE');
 
       } else if (nivel === "MPIO") {
+        
+        // console.log("NIVEL", variables.coberturaSeleccionado.value);
+        // console.log("VALUES DATA", variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel]["302 municipios"]);
         const dataNivel = Object.values(variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][variables.coberturaSeleccionado.value][variables.periodicidadSeleccionado.value][variables.periodoSeleccionado.value]).filter((v) => {
-          return v.MPIO === dpto;
+          return v.CODIGO_F1 + v.CODIGO_F2 === dpto;
         }, [])
         // console.log(dataNivel[0])
         if (dataNivel[0] != undefined) {

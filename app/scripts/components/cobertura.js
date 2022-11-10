@@ -11,6 +11,12 @@ const Cobertura = () => {
         setSelectedCobertura(event);
         variables.coberturaSeleccionado = event;
         variables.updateListaPeriodicidades(event.value);
+        let currZoom = variables.map.getView().getZoom();
+        if (currZoom < 7) {
+            variables.changeTheme("DPTO", null, "NM", "N");
+        } else {
+            variables.changeTheme("MPIO", null, "NM", "N");
+        }
         // variables.updatePeriodoHeader(event);
         // variables.updatePeriodoResult(event);
         // const currentZoom = variables.map.getView().getZoom();
@@ -64,7 +70,7 @@ const Cobertura = () => {
                     options={coberturasList}
                     getOptionValue={(option) => option.value}
                     getOptionLabel={(option) => option.label}
-                /> 
+                />
             </div>
             {/* <p className="help__content__text" itemProp="description">*El período corresponde a la sumatoria de los últimos doce meses transcurridos hasta el mes de referencia.</p> */}
         </div>

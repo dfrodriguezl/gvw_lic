@@ -162,6 +162,9 @@ const Search = ({ filterSearch, placeholder }) => {
                 }
                 else {
                     let urlData = variables.urlVariables + "?codigo_subgrupo=" + variables.varVariable.substring(0, 5)
+                    if(nivel != 'DPTO'){
+                        urlData += '&filtro_geografico=' + dpto;
+                    }
                     // let urlData = variables.urlVariables + "?codigo_subgrupo=" + variables.varVariable.substring(0, 5) + "&nivel_geografico=" + nivel
                     // if (campo != undefined) {
                     //     urlData += "&campo=" + campo
@@ -173,6 +176,7 @@ const Search = ({ filterSearch, placeholder }) => {
                     axios({ method: "GET", url: urlData })
                         .then(function (response) {
                             // console.log(variables.dataArrayDatos[variables.varVariable.substring(0, 5)])
+                            // console.log("RESPONSE", response.data.resultado);
                             const filterCoberturas = groupBySingleField(response.data.resultado, "SEXO");
                             
                             Object.keys(filterCoberturas).map((key, index) => {
@@ -196,9 +200,12 @@ const Search = ({ filterSearch, placeholder }) => {
                                     })
                                 })
                             });
+                            // console.log("DATA ARRAY", variables.dataArrayDatos[variables.varVariable.substring(0, 5)]);
+
+                            // console.log("COB SEL", variables.coberturaSeleccionado);
                             
 
-                            console.log("DATA ESTRUCTURADA", variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel]);
+                            // console.log("DATA ESTRUCTURADA", variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel]);
                             // variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel]
                             // variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][variables.periodoSeleccionado.value] = response.data.resultado
                             variables.queryText[variables.varVariable.substring(0, 5)] = response.data.consulta
@@ -320,6 +327,7 @@ const Search = ({ filterSearch, placeholder }) => {
                     // console.log("RESPONSE PERIODOS", item)
                     listaPeriodos.push(item.G);
                 })
+                console.log("LISTA PERIODOS", listaPeriodos);
                 const result = Array.from(new Set(listaPeriodos));
                 result.sort().reverse().map((res) => {
                     periodos.push({ value: res, label: res })
