@@ -43,15 +43,14 @@ const Filter = (props) => {
     let filteredOptions = options2.filter((o) => (o.cod_dane).substring(0,2) === selectedOption.cod_dane)
 
     const handleChange1 = (evt) => {
+        
         setSelectedOption(evt);
         let bbox = evt.bextent
         bboxExtent(bbox) 
         // console.log(evt)
         variables.deptoSelected = evt.cod_dane;
         variables.deptoSelectedFilter = evt.cod_dane;
-        variables.deptoVariable = evt.cod_dane;
-        
-             
+        variables.deptoVariable = evt.cod_dane;             
         
         
         // let currZoom = variables.map.getView().getZoom();
@@ -66,12 +65,13 @@ const Filter = (props) => {
         setSelectedOption3({cod_dane:"",value:""});
         variables.baseMapPrev = variables.baseMapCheck;
         variables.baseMapCheck = "Gris";
+        
         if(variables.changeDepto != null){
             variables.changeDepto(evt.cod_dane + " - " + evt.name)
         }
 
         let nivel = 'MPIO';
-
+        console.log("COD_DANE", evt.cod_dane);
         variables.changeTheme(nivel, evt.cod_dane, "NM", "N");
         // variables.filterGeo("DPTO",evt.cod_dane);
         // variables.changeTheme("DPTO", 0, "ND", "y");

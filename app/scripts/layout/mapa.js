@@ -964,7 +964,7 @@ variables.changeMap = function (nivel, dpto, table) {
       let valor, valor2
 
       // if (a["G"] === variables.periodoSeleccionado.value) {
-        // console.log("A MPIO", a);
+        
         if (a[variables.alias].includes(",")) {
 
           // if (variables.deptoSelected == undefined && variables.deptoSelectedFilter != undefined && a[nivel].substring(0,2) === variables.deptoSelectedFilter) {
@@ -982,7 +982,7 @@ variables.changeMap = function (nivel, dpto, table) {
           // }
 
         }
-
+        
 
         if (a[variables.alias2] != undefined) {
 
@@ -1000,7 +1000,7 @@ variables.changeMap = function (nivel, dpto, table) {
 
           if (!isNaN(valor2)) {
             if (variables.deptoSelectedFilter != undefined) {
-              if (a[nivel].substring(0, 2) === variables.deptoSelectedFilter) {
+              if (a["CODIGO_F1"].substring(0, 2) === variables.deptoSelectedFilter) {
                 valor2Array.push(valor2);
               }
             } else {
@@ -1011,12 +1011,15 @@ variables.changeMap = function (nivel, dpto, table) {
 
         }
 
+        console.log("A MPIO", valor);
 
 
 
         if (valor != undefined && !isNaN(valor)) {
+          
           if (variables.deptoSelectedFilter != undefined) {
-            if (a["CODIGO_F1"].substring(0, 2) === variables.deptoSelectedFilter) {
+            console.log("A_MPIO_2", a["CODIGO_F1"]);
+            if (a["CODIGO_F1"] === variables.deptoSelectedFilter) {
               return valor
             } else {
               return 0;
@@ -1042,7 +1045,7 @@ variables.changeMap = function (nivel, dpto, table) {
       // }
     }, []);
 
-    // console.log("INTEGRADO MPIO", integrado);
+    console.log("INTEGRADO MPIO", integrado);
 
     max = Math.max(...integrado);
     min = Math.min(...integrado);
@@ -1056,7 +1059,7 @@ variables.changeMap = function (nivel, dpto, table) {
     let list = integrado.filter((x, i, a) => a.indexOf(x) == i)
     let dataUnidades = variables.tematica["CATEGORIAS"][variables.varVariable][0]["UNIDAD"];
     // console.log(integrado)
-    // console.log(list)
+    
     var serie = new geostats(list);
     // console.log(serie)
     if (serie.getClassJenks(5) != undefined) {

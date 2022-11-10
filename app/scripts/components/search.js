@@ -108,7 +108,29 @@ const Search = ({ filterSearch, placeholder }) => {
 
                 // console.log("DATA ARRAY", Object.values(variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel]));
                 // if (Object.values(variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][variables.periodoSeleccionado.value]).length > 0) {
+
+                let procesarMpio = false;
+
                 if (Object.values(variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel]).length > 1) {
+                    if (nivel === "MPIO") {
+                        let data = variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][variables.coberturaSeleccionado.value][variables.periodicidadSeleccionado.value][variables.periodoSeleccionado.value];
+
+                        for (let i = 0; i < data.length; i++) {
+                            if (data[i]["CODIGO_F1"] === variables.deptoSelectedFilter) {
+                                procesarMpio = true;
+                            }
+                        }
+                    } else {
+                        procesarMpio = true;
+                    }
+                }
+
+
+
+
+
+                if (Object.values(variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel]).length > 1 && procesarMpio) {
+
                     // variables.loadDeptoCentroids();
                     variables.changeMap(nivel, dpto, table);
 
@@ -162,7 +184,7 @@ const Search = ({ filterSearch, placeholder }) => {
                 }
                 else {
                     let urlData = variables.urlVariables + "?codigo_subgrupo=" + variables.varVariable.substring(0, 5)
-                    if(nivel != 'DPTO'){
+                    if (nivel != 'DPTO') {
                         urlData += '&filtro_geografico=' + dpto;
                     }
                     // let urlData = variables.urlVariables + "?codigo_subgrupo=" + variables.varVariable.substring(0, 5) + "&nivel_geografico=" + nivel
@@ -178,7 +200,7 @@ const Search = ({ filterSearch, placeholder }) => {
                             // console.log(variables.dataArrayDatos[variables.varVariable.substring(0, 5)])
                             // console.log("RESPONSE", response.data.resultado);
                             const filterCoberturas = groupBySingleField(response.data.resultado, "SEXO");
-                            
+
                             Object.keys(filterCoberturas).map((key, index) => {
                                 variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][key] = [];
                                 const filterPeriodicidad = groupBySingleField(filterCoberturas[key], "CLASE");
@@ -187,7 +209,7 @@ const Search = ({ filterSearch, placeholder }) => {
                                     const filterAnio = groupBySingleField(filterPeriodicidad[keyFP], "ANIO");
                                     Object.keys(filterAnio).map((keyAn, indexAn) => {
                                         variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][key][keyFP][keyAn] = filterAnio[keyAn];
-                                        if(indexAn === 0 && indexFP === 0 && index === 0) {
+                                        if (indexAn === 0 && indexFP === 0 && index === 0) {
                                             actualizarUltimaCobertura(Object.keys(filterCoberturas));
                                             actualizarUltimaPeriodicidad(Object.keys(filterPeriodicidad));
                                             actualizarUltimaPeriodo(Object.keys(filterAnio).sort().reverse());
@@ -196,14 +218,14 @@ const Search = ({ filterSearch, placeholder }) => {
                                         // Object.keys(filterDepto).map((keyDepto, indexDepto) => {
                                         //     variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][key][keyFP][keyAn][keyDepto] = filterDepto[indexDepto];
                                         // })
-                                        
+
                                     })
                                 })
                             });
                             // console.log("DATA ARRAY", variables.dataArrayDatos[variables.varVariable.substring(0, 5)]);
 
                             // console.log("COB SEL", variables.coberturaSeleccionado);
-                            
+
 
                             // console.log("DATA ESTRUCTURADA", variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel]);
                             // variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel]
@@ -282,36 +304,36 @@ const Search = ({ filterSearch, placeholder }) => {
     }
 
     const actualizarUltimaCobertura = (coberturas) => {
-       const cobsList = coberturas.map((cob) => {
-        return {value: cob, label: cob};
-       }, []);
-       variables.coberturas = cobsList;
-       variables.coberturaSeleccionado = cobsList[0];
+        const cobsList = coberturas.map((cob) => {
+            return { value: cob, label: cob };
+        }, []);
+        variables.coberturas = cobsList;
+        variables.coberturaSeleccionado = cobsList[0];
     }
 
     const actualizarUltimaPeriodicidad = (periodicidades) => {
         const periodicidadList = periodicidades.map((perd) => {
-         return {value: perd, label: perd};
+            return { value: perd, label: perd };
         }, []);
-        
+
         variables.periodicidades = periodicidadList;
         variables.periodicidadSeleccionado = periodicidadList[0];
-        if(variables.updatePeriodicidad !== null){
+        if (variables.updatePeriodicidad !== null) {
             variables.updatePeriodicidad(periodicidadList[0].value);
         }
-        
-     }
 
-     const actualizarUltimaPeriodo = (periodos) => {
+    }
+
+    const actualizarUltimaPeriodo = (periodos) => {
         const periodosList = periodos.map((per) => {
-         return {value: per, label: per};
+            return { value: per, label: per };
         }, []);
-        
+
         variables.periodos = periodosList;
         variables.periodoSeleccionado = periodosList[0];
         variables.updatePeriodoHeader(periodosList[0]);
         variables.updatePeriodoResult(periodosList[0])
-     }
+    }
 
     const getPeriodos = (nivel, campo) => {
         let urlData = variables.urlVariables + "?codigo_subgrupo=" + variables.varVariable.substring(0, 5) + "&nivel_geografico=" + nivel
@@ -461,7 +483,7 @@ const Search = ({ filterSearch, placeholder }) => {
 
             // console.log(variables.dataArrayDatos[variables.varVariable.substring(0, 5)])
             let zoom = variables.map.getView().getZoom();
-            
+
 
             if (zoom >= 7) {
                 variables.changeTheme("MPIO", null, null, "y");
