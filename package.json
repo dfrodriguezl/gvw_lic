@@ -30,7 +30,7 @@
     "css-loader": "^3.4.2",
     "html-webpack-plugin": "^5.3.2",
     "json-loader": "^0.5.7",
-    "mini-css-extract-plugin": "^0.9.0",
+    "mini-css-extract-plugin": "^2.6.1",
     "node-normalize-scss": "^8.1.2",
     "nodemon": "^2.0.19",
     "resolve-url-loader": "^3.1.2",
@@ -39,8 +39,7 @@
     "url-loader": "^3.0.0",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.9.3",
-    "webpack-provide-global-plugin": "0.0.1"
+    "webpack-dev-server": "^4.9.3"
   },
   "dependencies": {
     "@babel/runtime": "^7.10.4",
@@ -56,6 +55,7 @@
     "chroma-js": "^2.1.1",
     "compression-webpack-plugin": "^6.0.0",
     "cookie-parser": "^1.4.5",
+    "copy-webpack-plugin": "^11.0.0",
     "cors": "^2.8.5",
     "csv-string": "^4.0.1",
     "d3": "^6.7.0",

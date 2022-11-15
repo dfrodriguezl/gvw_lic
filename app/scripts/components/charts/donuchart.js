@@ -31,6 +31,9 @@ const DonutChart = () => {
         dpto = '97';
       }
 
+      console.log("NIVEL", nivel);
+      console.log("DPTO", dpto);
+
       if (nivel === "MPIO") {
         dataNivel = Object.values(variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][variables.periodoSeleccionado.value]).filter((v) => {
           return v.MPIO === dpto;
@@ -40,8 +43,8 @@ const DonutChart = () => {
           return v.NSC === dpto;
         }, [])
       } else {
-        dataNivel = Object.values(variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][variables.periodoSeleccionado.value]).filter((v) => {
-          return v.ND === dpto;
+        dataNivel = Object.values(variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][variables.coberturaSeleccionado.value][variables.periodicidadSeleccionado.value][variables.periodoSeleccionado.value]).filter((v) => {
+          return v.CODIGO_F1 === dpto;
         }, []);
       }
 

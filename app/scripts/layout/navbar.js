@@ -9,6 +9,8 @@ import Temas from './searchMain';
 import Descarga from "../components/download";
 import { useDetectOutsideClick } from "./useDetectOutsideClick";
 import Periodo from "../components/periodo";
+import Cobertura from "../components/cobertura";
+import Periodicidad from "../components/periodicidad";
 
 const cn = (...args) => args.filter(Boolean).join(' ')
 
@@ -63,7 +65,7 @@ const TabsComponent = () => {
               </div>
               <p className="navBar__iconName">Herramientas</p>
             </Tab>
-            
+
 
             {/* <Tab><Descarga /></Tab>            */}
           </ul>
@@ -72,7 +74,11 @@ const TabsComponent = () => {
           <Panel></Panel>
           <Panel><Filter /></Panel>
           <Panel><Temas /></Panel>
-          <Panel><Periodo /></Panel>
+          <Panel>
+            <Cobertura />
+            <Periodicidad />
+            <Periodo />
+          </Panel>
           <Panel><Tools /></Panel>
         </Tabs>
       </Fragment>
