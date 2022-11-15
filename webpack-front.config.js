@@ -2,7 +2,6 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
-const WebpackProvideGlobalPlugin = require('webpack-provide-global-plugin');
 
 const CompressionPlugin = require('compression-webpack-plugin');
 
@@ -123,8 +122,7 @@ module.exports = {
       chunks: ["index"],
     }),
     new MiniCSSExtractPlugin({
-      filename: 'css/[name].css',
-      template: './app/styles/main.scss'
+      filename: 'css/[name].css'
     }),
     new CompressionPlugin(),
     new CopyPlugin({
