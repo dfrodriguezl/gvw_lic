@@ -31,8 +31,8 @@ const DonutChart = () => {
         dpto = '97';
       }
 
-      console.log("NIVEL", nivel);
-      console.log("DPTO", dpto);
+      // console.log("NIVEL", nivel);
+      // console.log("DPTO", dpto);
 
       if (nivel === "MPIO") {
         dataNivel = Object.values(variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][variables.periodoSeleccionado.value]).filter((v) => {
