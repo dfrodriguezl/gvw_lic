@@ -45,7 +45,7 @@ const TabsComponent = () => {
               <div className="navBar__icon">
                 <span className="DANE__Geovisor__icon__searchGeo"></span>
               </div>
-              <p className="navBar__iconName">Ubicación</p>
+              <p className="navBar__iconName">Ubicación y periodo</p>
             </Tab>
             <Tab>
               <div className="navBar__icon">
@@ -53,12 +53,12 @@ const TabsComponent = () => {
               </div>
               <p className="navBar__iconName">Temas</p>
             </Tab>
-            <Tab>
+            {/* <Tab>
               <div className="navBar__icon">
                 <span className="DANE__Geovisor__icon__clock"></span>
               </div>
               <p className="navBar__iconName">Periodo</p>
-            </Tab>
+            </Tab> */}
             <Tab>
               <div className="navBar__icon">
                 <span className="DANE__Geovisor__icon__settings"></span>
@@ -72,13 +72,18 @@ const TabsComponent = () => {
 
           {/* LOS PANELS - LLAMAN EL CONTENIDO DE CADA ITEM TAB SEGUN SU ORDEN */}
           <Panel></Panel>
-          <Panel><Filter /></Panel>
-          <Panel><Temas /></Panel>
           <Panel>
+            <Filter />
             <Cobertura />
             <Periodicidad />
             <Periodo />
-          </Panel>
+            </Panel>
+          <Panel><Temas /></Panel>
+          {/* <Panel>
+            <Cobertura />
+            <Periodicidad />
+            <Periodo />
+          </Panel> */}
           <Panel><Tools /></Panel>
         </Tabs>
       </Fragment>
