@@ -357,6 +357,8 @@ export const variables = {
     max: null,
     hideProportionalSymbols: null,
     updatePeriodoResult: null,
+    updateCoberturaResult: null,
+    updatePeriodicidadResult: null,
     periodos: null,
     coberturaSeleccionado: null,
     coberturas: [],

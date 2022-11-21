@@ -312,6 +312,9 @@ const Search = ({ filterSearch, placeholder }) => {
         if(variables.updateCoberturaHeader){
             variables.updateCoberturaHeader(cobsList[0]);
         }
+        if(variables.updateCoberturaResult){
+            variables.updateCoberturaResult(cobsList[0]);
+        }
     }
 
     const actualizarUltimaPeriodicidad = (periodicidades) => {
@@ -326,6 +329,9 @@ const Search = ({ filterSearch, placeholder }) => {
         }
         if(variables.updatePeriodicidadHeader){
             variables.updatePeriodicidadHeader(periodicidadList[0]);
+        }
+        if(variables.updatePeriodicidadResult){
+            variables.updatePeriodicidadResult(periodicidadList[0]);
         }
 
     }

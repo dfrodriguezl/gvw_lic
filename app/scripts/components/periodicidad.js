@@ -15,6 +15,9 @@ const Periodicidad = () => {
         if(variables.updatePeriodicidadHeader){
             variables.updatePeriodicidadHeader(event);
         }
+        if(variables.updatePeriodicidadResult){
+            variables.updatePeriodicidadResult(event);
+        }
         // variables.updatePeriodoHeader(event);
         // variables.updatePeriodoResult(event);
         // const currentZoom = variables.map.getView().getZoom();
