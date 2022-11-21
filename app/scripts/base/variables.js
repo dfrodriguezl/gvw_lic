@@ -345,6 +345,8 @@ export const variables = {
     periodoSeleccionado: { value: '2021-12', label: '2021-12' },
     updatePeriodo: null,
     updatePeriodoHeader: null,
+    updatePeriodicidadHeader: null,
+    updateCoberturaHeader: null,
     loadDeptoCentroids: null,
     loadMpioCentroids: null,
     unidadesDepto: null,

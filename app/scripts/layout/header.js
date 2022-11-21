@@ -7,9 +7,19 @@ import Search from '../components/search';
 const Header = () => {
     const resultados = true;
     const [periodoActual, setPeriodoActual] = useState(variables.periodoSeleccionado);
+    const [coberturaActual, setCoberturaActual] = useState(variables.coberturaSeleccionado);
+    const [periodicidadActual, setPeriodicidadActual] = useState(variables.periodicidadSeleccionado);
 
     variables.updatePeriodoHeader = (nuevoPeriodo) => {
         setPeriodoActual(nuevoPeriodo)
+    }
+
+    variables.updateCoberturaHeader = (nuevoCobertura) => {
+        setCoberturaActual(nuevoCobertura)
+    }
+
+    variables.updatePeriodicidadHeader = (nuevoPeriodicidad) => {
+        setPeriodicidadActual(nuevoPeriodicidad)
     }
 
     return (
@@ -72,7 +82,7 @@ const Header = () => {
                 <div className="Header__textBox">
                     <h1 className="Header__textBox__title">{variables.title}</h1>
                     <h2 className="Header__textBox__place">
-                        <span className="Header__textBox__value">Periodo: Año móvil a {periodoActual.label}</span>
+                        <span className="Header__textBox__value">Cobertura: {coberturaActual && coberturaActual.label}, Periodicidad: {periodicidadActual && periodicidadActual.label}, Periodo: {periodoActual.label}</span>
                         {/* <span className="Header__textBox__value">-</span>
                         <span className="Header__textBox__value">{variables.place}</span>
                         <span className="Header__textBox__value">-</span>

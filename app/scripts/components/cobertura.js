@@ -17,6 +17,9 @@ const Cobertura = () => {
         } else {
             variables.changeTheme("MPIO", null, "NM", "N");
         }
+        if(variables.updateCoberturaHeader){
+            variables.updateCoberturaHeader(event);
+        }
         // variables.updatePeriodoHeader(event);
         // variables.updatePeriodoResult(event);
         // const currentZoom = variables.map.getView().getZoom();

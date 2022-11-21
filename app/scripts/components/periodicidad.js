@@ -12,6 +12,9 @@ const Periodicidad = () => {
         variables.periodicidadSeleccionado = event;
         variables.updateListaPeriodos(variables.coberturaSeleccionado.value, variables.periodicidadSeleccionado.value);
         variables.updatePeriodicidad();
+        if(variables.updatePeriodicidadHeader){
+            variables.updatePeriodicidadHeader(event);
+        }
         // variables.updatePeriodoHeader(event);
         // variables.updatePeriodoResult(event);
         // const currentZoom = variables.map.getView().getZoom();
