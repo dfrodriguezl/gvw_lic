@@ -102,7 +102,7 @@ const DonutChart = () => {
       <Doughnut
         data={data}
         width={180}
-        height={100}
+        height={200}
         options={{
           legend: {
             position: 'bottom',

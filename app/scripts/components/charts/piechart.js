@@ -89,6 +89,7 @@ const PieChart = () => {
       <Pie
         data={data}
         width={180}
+        height={200}
         options={{
           legend: {
             position: 'bottom',

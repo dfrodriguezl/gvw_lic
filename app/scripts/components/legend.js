@@ -18,7 +18,7 @@ const Leyenda = () => {
     .map((item, index) => {
       // console.log("ITEM 2", item);
       return (
-        <li className="legend__panel__list__item" key={index}>
+        item[2] !== 0 && <li className="legend__panel__list__item" key={index}>
           <canvas className="legend__panel__list__item__square" style={{ background: item[0] }}></canvas>
           <p className="legend__panel__list__item__name"> {item[2]}</p>
         </li>

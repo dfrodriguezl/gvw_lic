@@ -774,8 +774,8 @@ variables.changeMap = function (nivel, dpto, table) {
     var integrado = Object.values(variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][variables.coberturaSeleccionado.value][variables.periodicidadSeleccionado.value][variables.periodoSeleccionado.value]).map(function (a, b) {
       let valor, valor2
       // if (a["G"] === variables.periodoSeleccionado.value) {
-        // console.log("A", a);
-        // console.log("ALIAS", variables.alias);
+      // console.log("A", a);
+      // console.log("ALIAS", variables.alias);
       if (a[variables.alias].includes(",")) {
         valor = parseFloat(a[variables.alias]).toFixed(2).toLocaleString("de-De").replace(",", ".")
       } else {
@@ -821,9 +821,31 @@ variables.changeMap = function (nivel, dpto, table) {
     // LEYENDA NIVEL DPTO
     var serie = new geostats(list);
     let dataUnidades = variables.tematica["CATEGORIAS"][variables.varVariable][0]["UNIDAD"];
+    // console.log("SERIE", serie)
+
+    let classes = 5;
+    if (list.length === 4) {
+      classes = 3;
+    } else if (list.length === 3) {
+      classes = 2;
+    } else if (list.length === 2) {
+      classes = 1;
+    }
+
+    // console.log("CLASSES", classes)
+    // console.log("RANGES", serie.getClassJenks(classes))
+    // if(serie.getClassJenks(classes).includes(undefined)){
+    //   classes = 4; 
+    //   if(serie.getClassJenks(classes).includes(undefined)){
+    //     classes = 3; 
+    //     if(serie.getClassJenks(classes).includes(undefined)){
+    //       classes = 2; 
+    //     }
+    //   }
+    // }
 
     // console.log("SERIE", serie.getClassJenks(5));
-    if (serie.getClassJenks(5) != undefined) {
+    if (serie.getClassJenks(classes) != undefined) {
 
       for (let index = 0; index < (serie.ranges).length; index++) {
         let rangeSplit = serie.ranges[(serie.ranges).length - (index + 1)].split(" - ");
@@ -891,28 +913,29 @@ variables.changeMap = function (nivel, dpto, table) {
 
       let shouldSkip = false;
       (variables.coloresLeyend[variables.varVariable][nivel]).forEach((value) => {
-        let element = value[2].split("-")
-        let colour
+        // console.log("VALUE", value);
+        if (value[2] !== 0) {
+          let element = value[2].split("-")
+          let colour
 
-        if (shouldSkip) {
-          return;
-        }
-
-        if (element.length == 1) {
-          if (parseFloat(valor) >= parseFloat((element[0].replace(">", "").trim()))) {
-            colour = value[0];
-            colors.push(colour)
-            shouldSkip = true
+          if (shouldSkip) {
+            return;
           }
-        } else {
-          if (parseFloat(valor) >= parseFloat(element[0]) && parseFloat(valor) <= parseFloat(element[1])) {
-            colour = value[0];
-            colors.push(colour)
-            shouldSkip = true
+
+          if (element.length == 1) {
+            if (parseFloat(valor) >= parseFloat((element[0].replace(">", "").trim()))) {
+              colour = value[0];
+              colors.push(colour)
+              shouldSkip = true
+            }
+          } else {
+            if (parseFloat(valor) >= parseFloat(element[0]) && parseFloat(valor) <= parseFloat(element[1])) {
+              colour = value[0];
+              colors.push(colour)
+              shouldSkip = true
+            }
           }
         }
-
-
       })
     }, []);
 
@@ -964,84 +987,84 @@ variables.changeMap = function (nivel, dpto, table) {
       let valor, valor2
 
       // if (a["G"] === variables.periodoSeleccionado.value) {
-        
-        if (a[variables.alias].includes(",")) {
 
+      if (a[variables.alias].includes(",")) {
+
+        // if (variables.deptoSelected == undefined && variables.deptoSelectedFilter != undefined && a[nivel].substring(0,2) === variables.deptoSelectedFilter) {
+        valor = parseFloat(a[variables.alias].replace(",", ".")).toFixed(2).toLocaleString("de-De")
+        // }
+        // else{
+        //   valor = parseFloat(a[variables.alias]).toFixed(2).toLocaleString("de-De").replace(",", ".")
+        // }
+      } else {
+        // if (variables.deptoSelected == undefined && variables.deptoSelectedFilter != undefined && a[nivel].substring(0,2) === variables.deptoSelectedFilter) {
+        valor = parseFloat(a[variables.alias]).toFixed(2)
+        // }
+        // else {
+        //   valor = parseFloat(a[variables.alias]).toFixed(2)
+        // }
+
+      }
+
+
+      if (a[variables.alias2] != undefined) {
+
+        if (a[variables.alias2].includes(",")) {
           // if (variables.deptoSelected == undefined && variables.deptoSelectedFilter != undefined && a[nivel].substring(0,2) === variables.deptoSelectedFilter) {
-          valor = parseFloat(a[variables.alias].replace(",", ".")).toFixed(2).toLocaleString("de-De")
+          valor2 = parseFloat(a[variables.alias2]).toFixed(2).toLocaleString("de-De").replace(",", ".")
           // }
-          // else{
-          //   valor = parseFloat(a[variables.alias]).toFixed(2).toLocaleString("de-De").replace(",", ".")
-          // }
+
         } else {
           // if (variables.deptoSelected == undefined && variables.deptoSelectedFilter != undefined && a[nivel].substring(0,2) === variables.deptoSelectedFilter) {
-          valor = parseFloat(a[variables.alias]).toFixed(2)
-          // }
-          // else {
-          //   valor = parseFloat(a[variables.alias]).toFixed(2)
+          valor2 = parseFloat(a[variables.alias2])
           // }
 
         }
-        
 
-        if (a[variables.alias2] != undefined) {
-
-          if (a[variables.alias2].includes(",")) {
-            // if (variables.deptoSelected == undefined && variables.deptoSelectedFilter != undefined && a[nivel].substring(0,2) === variables.deptoSelectedFilter) {
-            valor2 = parseFloat(a[variables.alias2]).toFixed(2).toLocaleString("de-De").replace(",", ".")
-            // }
-
-          } else {
-            // if (variables.deptoSelected == undefined && variables.deptoSelectedFilter != undefined && a[nivel].substring(0,2) === variables.deptoSelectedFilter) {
-            valor2 = parseFloat(a[variables.alias2])
-            // }
-
-          }
-
-          if (!isNaN(valor2)) {
-            if (variables.deptoSelectedFilter != undefined) {
-              if (a["CODIGO_F1"].substring(0, 2) === variables.deptoSelectedFilter) {
-                valor2Array.push(valor2);
-              }
-            } else {
-              valor2Array.push(valor2);
-            }
-
-          }
-
-        }
-
-        console.log("A MPIO", valor);
-
-
-
-        if (valor != undefined && !isNaN(valor)) {
-          
-          if (variables.deptoSelectedFilter != undefined) {
-            console.log("A_MPIO_2", a["CODIGO_F1"]);
-            if (a["CODIGO_F1"] === variables.deptoSelectedFilter) {
-              return valor
-            } else {
-              return 0;
-            }
-          } else {
-            return valor
-          }
-
-        } else if (valor2 != undefined && !isNaN(valor2)) {
+        if (!isNaN(valor2)) {
           if (variables.deptoSelectedFilter != undefined) {
             if (a["CODIGO_F1"].substring(0, 2) === variables.deptoSelectedFilter) {
-              return valor2
-            } else {
-              return 0;
+              valor2Array.push(valor2);
             }
           } else {
-            return valor2
+            valor2Array.push(valor2);
           }
 
-        } else {
-          return 0
         }
+
+      }
+
+      console.log("A MPIO", valor);
+
+
+
+      if (valor != undefined && !isNaN(valor)) {
+
+        if (variables.deptoSelectedFilter != undefined) {
+          console.log("A_MPIO_2", a["CODIGO_F1"]);
+          if (a["CODIGO_F1"] === variables.deptoSelectedFilter) {
+            return valor
+          } else {
+            return 0;
+          }
+        } else {
+          return valor
+        }
+
+      } else if (valor2 != undefined && !isNaN(valor2)) {
+        if (variables.deptoSelectedFilter != undefined) {
+          if (a["CODIGO_F1"].substring(0, 2) === variables.deptoSelectedFilter) {
+            return valor2
+          } else {
+            return 0;
+          }
+        } else {
+          return valor2
+        }
+
+      } else {
+        return 0
+      }
       // }
     }, []);
 
@@ -1059,7 +1082,7 @@ variables.changeMap = function (nivel, dpto, table) {
     let list = integrado.filter((x, i, a) => a.indexOf(x) == i)
     let dataUnidades = variables.tematica["CATEGORIAS"][variables.varVariable][0]["UNIDAD"];
     // console.log(integrado)
-    
+
     var serie = new geostats(list);
     // console.log(serie)
     if (serie.getClassJenks(5) != undefined) {
@@ -1483,18 +1506,21 @@ const updateRangeSimbology = (valorCampo, nivel, colorInput) => {
   if (valorCampo != undefined) {
     (variables.coloresLeyend[variables.varVariable][nivel]).map(function (obj, j, k) {
       let element = obj[2];
-      element = String(element).split('-');
-      if (element.length == 1) {
-        if (parseFloat(valorCampo[variables.alias]).toFixed(2)
-          >= parseFloat(element[0].replace(">", "").replaceAll('.', '').replace("%", "").trim())) {
-          color = obj[0];
-        }
-      } else {
-        if (parseFloat(valorCampo[variables.alias]).toFixed(2) >= parseFloat(element[0].replaceAll('.', '').replace("%", ""))
-          && parseFloat(valorCampo[variables.alias]).toFixed(2) <= parseFloat(element[1].replaceAll('.', '').replace("%", ""))) {
-          color = obj[0];
+      if (element !== 0) {
+        element = String(element).split('-');
+        if (element.length == 1) {
+          if (parseFloat(valorCampo[variables.alias]).toFixed(2)
+            >= parseFloat(element[0].replace(">", "").replaceAll('.', '').replace("%", "").trim())) {
+            color = obj[0];
+          }
+        } else {
+          if (parseFloat(valorCampo[variables.alias]).toFixed(2) >= parseFloat(element[0].replaceAll('.', '').replace("%", ""))
+            && parseFloat(valorCampo[variables.alias]).toFixed(2) <= parseFloat(element[1].replaceAll('.', '').replace("%", ""))) {
+            color = obj[0];
+          }
         }
       }
+
     }, []);
   }
 
@@ -2003,7 +2029,7 @@ const addClusterDepto = () => {
       if (size == 1) {
         style = new Style({
           image: new CircleStyle({
-            radius: 10,
+            radius: 0,
             fill: new Fill({
               color: '#2FC2DF'
             })
@@ -2092,7 +2118,7 @@ const addClusterMpio = () => {
       if (size == 1) {
         style = new Style({
           image: new CircleStyle({
-            radius: 10,
+            radius: 0,
             fill: new Fill({
               color: '#2FC2DF'
             })

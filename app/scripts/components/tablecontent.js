@@ -9,6 +9,9 @@ const TableContent = () => {
   const [responsive, setResponsive] = useState("vertical");
   const [data, setData] = useState([])
   const [col, setCol] = useState([])
+  const [periodo, setPeriodo] = React.useState(variables.periodoSeleccionado);
+  const [cobertura, setCobertura] = React.useState(variables.coberturaSeleccionado);
+  const [periodicidad, setPeriodicidad] = React.useState(variables.periodoSeleccionado);
   const tableRef = useRef();
   
   const options = {
@@ -60,10 +63,22 @@ const TableContent = () => {
     tableRef.current.table.download("csv","data.csv");
   }
 
+  variables.updatePeriodoTable = (periodo) => {
+    setPeriodo(periodo)
+  }
+
+  variables.updateCoberturaTable = (cobertura) => {
+    setCobertura(cobertura)
+  }
+
+  variables.updatePeriodicidadTable = (periodicidad) => {
+    setPeriodicidad(periodicidad)
+  }
+
   return (
     <React.Fragment> 
       <div className="tableBox__top">
-        <h3 className="tableBox__tableName">Tabla de datos - {variables.tematica["CATEGORIAS"][variables.varVariable][0]["CATEGORIA"]}</h3>
+        <h3 className="tableBox__tableName">Tabla de datos - {variables.tematica["CATEGORIAS"][variables.varVariable][0]["CATEGORIA"]} - Cobertura: {cobertura && cobertura.label} - Período ({periodicidad && periodicidad.label}): {periodo.label} </h3>
         <ExportTable exportar={downloadData}/>
         {/* <div className="tableBox__close"></div> */}
       </div>

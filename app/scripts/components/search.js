@@ -315,6 +315,9 @@ const Search = ({ filterSearch, placeholder }) => {
         if(variables.updateCoberturaResult){
             variables.updateCoberturaResult(cobsList[0]);
         }
+        if(variables.updateCoberturaTable){
+            variables.updateCoberturaTable(cobsList[0]);
+        }
     }
 
     const actualizarUltimaPeriodicidad = (periodicidades) => {
@@ -333,6 +336,9 @@ const Search = ({ filterSearch, placeholder }) => {
         if(variables.updatePeriodicidadResult){
             variables.updatePeriodicidadResult(periodicidadList[0]);
         }
+        if(variables.updatePeriodicidadTable){
+            variables.updatePeriodicidadTable(periodicidadList[0]);
+        }
 
     }
 
@@ -345,6 +351,10 @@ const Search = ({ filterSearch, placeholder }) => {
         variables.periodoSeleccionado = periodosList[0];
         variables.updatePeriodoHeader(periodosList[0]);
         variables.updatePeriodoResult(periodosList[0]);
+        if(variables.updatePeriodotable){
+            variables.updatePeriodotable(periodosList[0]);
+        }
+        
     }
 
     const getPeriodos = (nivel, campo) => {
@@ -370,6 +380,7 @@ const Search = ({ filterSearch, placeholder }) => {
                 variables.periodoSeleccionado = periodos[0];
                 variables.updatePeriodoHeader(periodos[0]);
                 variables.updatePeriodoResult(periodos[0])
+                variables.updatePeriodoTable(periodos[0])
             });
     }
 

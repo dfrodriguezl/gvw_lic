@@ -23,6 +23,9 @@ const Cobertura = () => {
         if(variables.updateCoberturaResult){
             variables.updateCoberturaResult(event);
         }
+        if(variables.updateCoberturaTable){
+            variables.updateCoberturaTable(event);
+        }
         // variables.updatePeriodoHeader(event);
         // variables.updatePeriodoResult(event);
         // const currentZoom = variables.map.getView().getZoom();

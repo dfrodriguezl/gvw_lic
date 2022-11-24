@@ -13,6 +13,7 @@ const Periodo = () => {
         variables.periodoSeleccionado = event;
         variables.updatePeriodoHeader(event);
         variables.updatePeriodoResult(event);
+        variables.updatePeriodoTable(event);
         const currentZoom = variables.map.getView().getZoom();
         if (currentZoom <= 7) {
             // if(!variables.dataArrayDatos[variables.varVariable.substring(0, 5)]["DPTO"][variables.coberturaSeleccionado.value][variables.periodicidadSeleccionado.value][variables.periodoSeleccionado.value]){
