@@ -1,12 +1,16 @@
 // Layout boton tabla, para animacion, si quiere modificar la tabla dirijase a components -> tablecontent
 import React, { useState } from "react";
+import { variables } from "../base/variables";
 
 function handleScroll() {
-  window.scroll({
-    top: document.body.offsetHeight,
-    left: 0, 
-    behavior: 'smooth',
-  });
+  if(variables.updateTableVisible){
+    variables.updateTableVisible(true);
+  }
+  // window.scroll({
+  //   top: document.body.offsetHeight,
+  //   left: 0, 
+  //   behavior: 'smooth',
+  // });
 }
 
 const Table = () => {

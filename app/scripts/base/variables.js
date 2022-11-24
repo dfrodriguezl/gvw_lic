@@ -369,6 +369,8 @@ export const variables = {
     periodicidades: [],
     updateListaPeriodicidades: null,
     updateListaPeriodos: null,
-    updatePeriodicidad: null
+    updatePeriodicidad: null,
+    updateTableVisible: null,
+    tableVisible: true
 }
 export const urlDeploy = 'http://localhost:3000/'
