@@ -584,9 +584,10 @@ const Search = ({ filterSearch, placeholder }) => {
                 variables.dataArrayDatos[variables.varVariable.substring(0, 5)]["MPIO"][variables.periodoSeleccionado.value] = {};
             }
             variables.changeTheme("DPTO", 0, "ND", "y");
-            variables.changeTheme("MPIO", null, null, "y");
+            
             if (variables.deptoSelected == undefined && variables.deptoVariable != undefined) {
-                variables.filterGeo("DPTO", variables.deptoVariable)
+                variables.filterGeo("DPTO", variables.deptoVariable);
+                variables.changeTheme("MPIO", variables.deptoVariable, null, "y");
             }
             variables.changeStyleDepto();
         }

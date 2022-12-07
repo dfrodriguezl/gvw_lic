@@ -1041,7 +1041,7 @@ variables.changeMap = function (nivel, dpto, table) {
       if (valor != undefined && !isNaN(valor)) {
 
         if (variables.deptoSelectedFilter != undefined) {
-          console.log("A_MPIO_2", a["CODIGO_F1"]);
+          // console.log("A_MPIO_2", a["CODIGO_F1"]);
           if (a["CODIGO_F1"] === variables.deptoSelectedFilter) {
             return valor
           } else {
