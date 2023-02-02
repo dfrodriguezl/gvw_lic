@@ -153,6 +153,8 @@ const Mapa = () => {
       }
     }
 
+    //a
+
     if (newZoom >= 7 && newZoom <= 11) {
       variables.loadMpioCentroids();
       variables.changeStyleDepto();
