@@ -371,6 +371,7 @@ export const variables = {
     updateListaPeriodos: null,
     updatePeriodicidad: null,
     updateTableVisible: null,
-    tableVisible: true
+    tableVisible: true,
+    mostrarModal: null
 }
 export const urlDeploy = 'http://localhost:3000/'

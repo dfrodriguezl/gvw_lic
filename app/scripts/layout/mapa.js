@@ -588,6 +588,13 @@ const Mapa = () => {
   loadLayers2();
   // Add clusters
   // addCluster();
+  if (variables.mostrarModal != null) {
+    if (localStorage.getItem("ayuda") != "true") {
+      variables.mostrarModal();
+      localStorage.setItem("ayuda", "true");
+    }
+  }
+
   addClusterDepto();
   variables.loadDeptoCentroids();
   addClusterMpio();
@@ -597,9 +604,6 @@ const Mapa = () => {
       <div id="switch_visualization"><TipoVisualizacion /></div>
       <div className="coordenates">
         <div id="coordenates__panel"></div>
-
-        {/* <TipoVisualizacion /> */}
-
       </div>
     </Fragment>
 
@@ -967,6 +971,7 @@ variables.changeMap = function (nivel, dpto, table) {
         return changeSymbologi(layer, nivel, feature)
       })
 
+      localStorage.getItem("visualization") === "symbols" ? layer.setVisible(false) : layer.setVisible(true);
       localStorage.getItem("visualization") === "symbols" ? layer.setVisible(false) : layer.setVisible(true);
 
       // if(layer.getVisible()){

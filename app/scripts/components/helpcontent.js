@@ -37,6 +37,12 @@ const HelpContent = () => {
                     </Tab>
                     <Tab>
                         <div className="help__icon">
+                            <span className="DANE__Geovisor__icon__tutorial"></span>
+                        </div>
+                        <p className="help__text">Video</p>
+                    </Tab>
+                    <Tab>
+                        <div className="help__icon">
                             <span className="DANE__Geovisor__icon__identify"></span>
                         </div>
                         <p className="help__text">Acerca de</p>
@@ -57,10 +63,17 @@ const HelpContent = () => {
                 </Panel>
 
                 <Panel>
+                    <div className="help__content">
+                        <iframe width="490" height="315" src="https://www.youtube.com/embed/B8a2T2Kg0ck" title="YouTube video player" frameborder="10">
+                        </iframe>
+                    </div>
+                </Panel>
+
+                <Panel>
                     <div className="help__content" id="help__aboutUrl">
                         <p className="help__content__text" itemProp="description">
-                        Geovisor para la consulta y visualización de la información correspondiente a los resultados de la operación estadística de 
-                        licencias de construcción para agregados geográficos departamento y municipios
+                            Geovisor para la consulta y visualización de la información correspondiente a los resultados de la operación estadística de
+                            licencias de construcción para agregados geográficos departamento y municipios
                             <br />
                             <a href="https://www.dane.gov.co/index.php/estadisticas-por-tema/construccion/licencias-de-construccion" target="_blank" className="help__listPanelLink">
                                 <div className="help__panelItem__icon1">
