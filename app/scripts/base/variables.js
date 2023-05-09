@@ -3,6 +3,7 @@ export const variables = {
 
     title: 'Geovisor de Estadísticas de Licencias de Construcción (ELIC)', //Cambielo por el título de su geovisor
     description: 'Visor para consulta de los Resultados del Conteo de Unidades Económicas.',
+    fuente: 'Estadísticas de Licencias de Construcción (ELIC)',
     country: 'Colombia',
     place: ' Todos los departamentos ',
     year: ' 2021 ',

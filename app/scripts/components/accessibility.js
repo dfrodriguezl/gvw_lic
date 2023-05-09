@@ -6,7 +6,7 @@ const AccessibilityTool = () => {
     const dropdownRef = useRef(null);
     const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
     const onClick = () => setIsActive(!isActive);
-    const [fontSize, changeFontSize] = useState("16px");
+    const [fontSize, changeFontSize] = useState("0.9em");
     const [active, setActive] = useState(localStorage.getItem("accesibility") === "grayscale" ? true : false);
 
     useEffect(() => {
