@@ -124,10 +124,10 @@ const Filter = (props) => {
             variables.changeDepto(selectedOption.cod_dane + " - " + selectedOption.name + ", " + evt.cod_dane + " - " + evt.name)
           }
         //   console.log(variables.map.getZoom())
-        if(variables.map.getView().getZoom() < 12){
-            let filter = clase.filter((o) => (o.cod_dane).indexOf(evt.cod_dane+"1") != -1)
-            bboxExtent(filter[0].bextent)
-        }
+        // if(variables.map.getView().getZoom() < 12){
+        //     let filter = clase.filter((o) => (o.cod_dane).indexOf(evt.cod_dane+"1") != -1)
+        //     bboxExtent(filter[0].bextent)
+        // }
 
         let nivel = 'MPIO';
 
