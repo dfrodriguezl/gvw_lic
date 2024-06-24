@@ -16,12 +16,8 @@ const BarHData = () => {
     setCategoria(variables.tematica["CATEGORIAS"][variables.varVariable][0]["CATEGORIA"])
 
     let valor = 0;
-    console.log("DPTO", dpto);
-    console.log("NIVEL", nivel);
 
     if (variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel] != undefined) {
-      // console.log(variables.dataArrayDatos[variables.varVariable.substring(0, 5)])
-      // console.log("NIVEL DATA", nivel)
 
       if (dpto == undefined) {
         var integrado = Object.values(variables.dataArrayDatos[variables.varVariable.substring(0, 5)][nivel][variables.coberturaSeleccionado.value][variables.periodicidadSeleccionado.value][variables.periodoSeleccionado.value]).map(function (a, b) {

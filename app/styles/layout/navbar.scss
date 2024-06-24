@@ -40,6 +40,9 @@
         border-width: 5px 0 5px 8px;
         border-color: transparent transparent transparent $white;
     }
+    .navBar__collapseBtn__menu{
+        margin-top: 8px;
+    }
 }
 
 .navBar__container.active {

@@ -11,6 +11,9 @@ import { useDetectOutsideClick } from "./useDetectOutsideClick";
 import Periodo from "../components/periodo";
 import Cobertura from "../components/cobertura";
 import Periodicidad from "../components/periodicidad";
+import burger_bar from '../../img/burger-bar.png'
+import menu_bar from '../../img/menu-bar.png'
+
 
 const cn = (...args) => args.filter(Boolean).join(' ')
 
@@ -31,7 +34,7 @@ const Panel = ({ children }) => {
 const TabsComponent = () => {
   const state = useState(2);
   const dropdownRef = useRef(null);
-  const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
+  const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, true);
   const onClick = () => setIsActive(!isActive);
 
   return (
@@ -88,7 +91,11 @@ const TabsComponent = () => {
         </Tabs>
       </Fragment>
       <div className="navBar__collapseBtn" onClick={onClick}>
-        <div className="navBar__collapseBtn__triangle"></div>
+        {isActive ? 
+        <img src={menu_bar} width="50" height="50" className="navBar__collapseBtn__menu"/> :
+        <div className="navBar__collapseBtn__triangle"></div>}
+        {/* <img src={burger_bar} />
+        <div className="navBar__collapseBtn__triangle"></div> */}
       </div>
     </div>
   );
