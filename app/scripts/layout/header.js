@@ -27,7 +27,8 @@ const Header = () => {
             <div className="Header__container">
                 <div className="Header__container__logo">
                     <a rel="noreferrer" title="Geoportal DANE Logo" href="https://www.dane.gov.co/" className="Header__container__logo__link" target="_blank">
-                        <span className="DANE__Geovisor__icon__logoDANE__01">
+                    <img className='DANE__Geovisor__icon__logoDANE__01' src="https://geoportal.dane.gov.co/src/images/general/LogoDANE_Nuevo.svg" id="logo" alt="logo-dane"></img>
+                        {/* <span className="DANE__Geovisor__icon__logoDANE__01">
                             <span className="path1"></span>
                             <span className="path2"></span>
                             <span className="path3"></span>
@@ -52,7 +53,7 @@ const Header = () => {
                             <span className="path22"></span>
                             <span className="path23"></span>
                             <span className="path24"></span>
-                        </span>
+                        </span> */}
                     </a>
                 </div>
                 <h3 className="Header__container__geoportal">
