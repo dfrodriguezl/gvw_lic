@@ -20,7 +20,7 @@ const Panel = ({ children }) => {
 };
 
 const HelpContent = () => {
-    const state = useState(0);
+    const state = useState(1);
 
     return (
         <Fragment>
@@ -64,8 +64,14 @@ const HelpContent = () => {
 
                 <Panel>
                     <div className="help__content">
-                        <iframe width="490" height="315" src="https://www.youtube.com/embed/B8a2T2Kg0ck" title="YouTube video player" frameborder="10">
-                        </iframe>
+                        <img
+                            className="help__content__item"
+                            loading="lazy"
+                            width={490}
+                            height={315}
+                            src="https://geoportal.dane.gov.co/descargas/videos/GIF_GEOVISOR_ESTADISTICAS_LICENCIAS_CONSTRUCCION.gif"
+                            alt="Tutorial animado del geovisor de licencias de construcción del Geoportal DANE"
+                        />
                     </div>
                 </Panel>
 
